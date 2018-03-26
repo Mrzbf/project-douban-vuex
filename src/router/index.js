@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import intheaters from "@/components/in_theaters"
-import coming_soon from "@/components/coming_soon"
-import top250 from "@/components/top250"
+// import intheaters from "@/components/in_theaters"
+import movieList from "@/components/movieList"
+// import top250 from "@/components/top250"
 import search from "@/components/search"
+import notFound from "@/components/notFound"
 import index from '@/index'
 
 Vue.use(Router)
@@ -11,30 +12,24 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/', redirect: {name: 'in_theaters'}
+      path: '/', redirect: {name: 'movieList'}
     },
     {
-      path: '/in_theaters',
-      name: 'in_theaters',
-      component: intheaters,
-      meta: {keepAlive: true}
-    },
-    {
-      path: '/coming_soon',
-      name: 'coming_soon',
-      component: coming_soon,
-      meta: {keepAlive: true}
-    },
-    {
-      path: '/top250',
-      name: 'top250',
-      component: top250,
+      path: '/movieList',
+      name: 'movieList',
+      component: movieList,
       meta: {keepAlive: true}
     },
     {
       path: '/search',
       name: 'search',
       component: search,
+      meta: {keepAlive: false}
+    },
+    {
+      path: '*',
+      name: 'notFound',
+      component: notFound,
       meta: {keepAlive: false}
     }
   ]

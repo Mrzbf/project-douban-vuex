@@ -8,7 +8,7 @@ export default {
       state.title = "正在热映";
     } else if (str === "top250") {
       state.title = "top250";
-    }else if (str === "search") {
+    } else if (str === "search") {
       this.title = "搜索结果"
     }
   },

@@ -4,7 +4,7 @@ import Vue from 'vue'
 import index from './index'
 import store from "./store/"
 import router from './router'
-import comingSoon from "./components/coming_soon"
+import movieList from "./components/movieList"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 Vue.config.productionTip = false
@@ -16,4 +16,4 @@ new Vue({
   template: '<index/>',
   components: {index}
 })
-Vue.component("coming-soon", comingSoon);
+Vue.component("movieList", movieList);

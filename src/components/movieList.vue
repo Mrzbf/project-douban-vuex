@@ -53,9 +53,10 @@
   const jsonp = require("jsonp");
   
   export default {
-    name: "coming_soon",
+    name: "movieList",
     data() {
       return {
+        str: this.$route.query.str || "in_theaters",
         start: 0,
         count: 10,
         items: [],
@@ -64,9 +65,9 @@
     },
     created() {
 //      console.log(this.$route.name);
-      this.CHANGE_TITLE(this.$route.name);
+      this.CHANGE_TITLE(this.str);
       this.getDetails({
-        str: this.$route.name,
+        str: this.str,
         start: this.start,
         count: this.count
       });
@@ -103,21 +104,20 @@
         })
       },
       currentPageNumber(v) {
-        this.start = (v - 1) * 20 + 1;
+        this.start = (v - 1) * 10;
       },
       getCurrent(v) {
         this.currentPageNumber(v);
         this.getDetails({
-          str: this.$route.name,
+          str: this.str,
           start: this.start,
           count: this.count
         })
       },
       getPrew() {
-        
         this.minusPageNumber();
         this.getDetails({
-          str: this.$route.name,
+          str: this.str,
           start: this.start,
           count: this.count
         })
@@ -125,13 +125,24 @@
       getNext() {
         this.addPageNumber();
         this.getDetails({
-          str: this.$route.name,
+          str: this.str,
           start: this.start,
           count: this.count
         })
       },
       
-    }
+    },
+    beforeRouteUpdate(to, from, next) {
+      // console.log(this);
+      this.str = to.query.str;
+      this.getDetails({
+        str: this.str,
+        start: this.start,
+        count: this.count
+      });
+      this.CHANGE_TITLE(this.str);
+      next()
+    },
   }
 </script>
 <style>
